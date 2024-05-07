@@ -81,8 +81,23 @@ public class VerificationMatcherExamplesTests {
         //arrange
         Mockito.when(mock.addAll(argThat(new IsListOfTwoElements()))).thenReturn(true);
         //act
-        mock.addAll(Arrays.asList("one", "two"));
+        // Add three to array ----------------------------
+        mock.addAll(Arrays.asList("one", "three"));
         //assert verify(mock, times(0)).addAll(argThat(list -> list.contains("three")));
         verify(mock).addAll(argThat(list -> list.contains("three")));
     }
+
+//    @Test
+//    @DisplayName("Verification Matcher AddAll Find value 3 Test")
+//    public void verificationMatcherFindValue3() throws PetNotFoundSaleException, PetDataStoreException
+//    {
+//        List mock = mock(List.class);
+//        //act
+//        // Or remove behavior of isListOfTwoElements when addAll is called
+//        // which matches for two elements
+//        // and then add three
+//        mock.addAll(Arrays.asList("one", "two", "three"));
+//        //assert verify(mock, times(0)).addAll(argThat(list -> list.contains("three")));
+//        verify(mock).addAll(argThat(list -> list.contains("three")));
+//    }
 }

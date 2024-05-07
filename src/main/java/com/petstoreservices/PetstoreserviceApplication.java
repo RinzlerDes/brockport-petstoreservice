@@ -46,4 +46,9 @@ public class PetstoreserviceApplication {
 		return String.format("Hello %s!", name);
 	}
 
+	@GetMapping("/tamer")
+	public String tamer(@RequestParam(value = "key", defaultValue = "tamer") String val) {
+		return "Your name is " + val;
+	}
+
 }

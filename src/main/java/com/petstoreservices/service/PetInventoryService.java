@@ -33,7 +33,7 @@ public class PetInventoryService {
     public PetInventoryService()
     {
 
-//        petRepo = new PetRepository();
+        petRepo = new PetRepository();
     }
 
     /**

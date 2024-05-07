@@ -39,7 +39,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.*;
 
 /**
@@ -120,6 +119,28 @@ public class PetStoreServiceTests
                 DynamicTest.dynamicTest("Pet item with Cat id 1 Not Found",
                         ()-> assertTrue(foundPetList.contains(myPets.get(3))==false)));
 
+        return inventoryTests.stream();
+    }
+
+    // Added uncovered method getInventory
+    @TestFactory
+    @DisplayName("Get Inventory Service Test")
+    public Stream<DynamicTest> getInventory() throws PetDataStoreException {
+        when(petService.getInventory()).thenReturn(myPets);
+        List<PetEntity> foundPetList = petService.getInventory();
+
+        List<DynamicTest> inventoryTests = Arrays.asList(
+                DynamicTest.dynamicTest("List Size Test",
+                        () -> assertEquals(4, foundPetList.size())),
+                DynamicTest.dynamicTest("Pet item with Dog id 1",
+                        ()-> assertTrue(foundPetList.stream()
+                                .anyMatch(c -> c.getPetId()==1 && c.getPetType() == PetType.DOG
+                                        && c.getGender() ==Gender.MALE && c.getBreed() == Breed.POODLE))),
+                DynamicTest.dynamicTest("Pet item with Cat id 1",
+                        () -> assertTrue(foundPetList.stream()
+                                .anyMatch(cat -> cat.getPetId() == 1 && cat.getPetType() == PetType.CAT
+                                    && cat.getGender() == Gender.MALE && cat.getBreed() == Breed.BURMESE)))
+        );
         return inventoryTests.stream();
     }
 
