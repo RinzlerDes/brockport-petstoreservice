@@ -1,4 +1,6 @@
-# Pet Store Community	Student Name: Tamer Ozkum
+# Student Name: Tamer Ozkum
+
+# Pet Store Community
 
 Pet store service application provides simple REST calls that can be used to exercise writing automated testing of API.
 
